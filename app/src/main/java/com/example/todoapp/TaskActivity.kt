@@ -1,4 +1,5 @@
 package com.example.todoapp
+
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
@@ -20,10 +21,10 @@ const val DB_NAME = "todo.db"
 
 class TaskActivity : AppCompatActivity(), View.OnClickListener {
 
-    lateinit var myCalendar: Calendar // myCalender holds the value of date & time in calender
+    lateinit var myCalendar: Calendar
 
-    lateinit var dateSetListener: DatePickerDialog.OnDateSetListener  //interface invoke when date dialog is shawn on screen
-    lateinit var timeSetListener: TimePickerDialog.OnTimeSetListener  //interface invoke when time dialog is shawn on screen
+    lateinit var dateSetListener: DatePickerDialog.OnDateSetListener
+    lateinit var timeSetListener: TimePickerDialog.OnTimeSetListener
 
     var finalDate = 0L
     var finalTime = 0L
@@ -79,7 +80,7 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
 
         GlobalScope.launch(Dispatchers.Main) {
             val id = withContext(Dispatchers.IO) {
-                return @withContext db.todoDao().insertTask(
+                return@withContext db.todoDao().insertTask(
                     TodoModel(
                         title,
                         description,
@@ -112,7 +113,7 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun updateTime() {
-        //Mon, 22 April 2020
+        //Mon, 5 Jan 2020
         val myformat = "h:mm a"
         val sdf = SimpleDateFormat(myformat)
         finalTime = myCalendar.time.time
